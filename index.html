@@ -286,15 +286,30 @@
             <label for="instructions">Please describe the reason for this visit </label>
             <textarea id="instructions" rows="3"></textarea>
           </div>
-        </fieldset>
-
-        <div class="btn-block">
-          
-          <form method="post" action="mailto:gavrilutageorge@gmail.com" >
-<input type="submit" value="Send Email" /> 
-</form>
+             <div class="btn-block">
+        <p><input id="subject" type="text" placeholder="type your subject here" 
+    class="form-control"></p>
+<p><input id="message" type="text" placeholder="type your message here" 
+    class="form-control"></p>
+    <p><button id="mail-link" class="btn btn-primary">Send Email</button> </p>
         </div>
       </form>
     </div>
+        </fieldset>
+
   </body>
+
+  <script type="text/javascript">
+    function loadEvents() {
+        var mailString;
+        function updateMailString() {
+            mailString = '?subject=' + encodeURIComponent($('#subject').val())
+                + '&body=' + encodeURIComponent($('#message').val());
+            $('#mail-link').attr('href',  'mailto:gavrilutageorge@gmail.com' + mailString);
+        }
+        $( "#subject" ).focusout(function() { updateMailString(); });
+        $( "#message" ).focusout(function() { updateMailString(); });
+        updateMailString();
+    }
+</script>
 </html>
